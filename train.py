@@ -190,6 +190,14 @@ def train():
                 }, epoch, opt.MODEL.SESSION, opt.TRAINING.SAVE_DIR)
             else:
                 epochs_no_improve += 1
+                save_checkpoint({
+                    'epoch': epoch,
+                    'state_dict': accelerator.unwrap_model(model).state_dict(),
+                    'optimizer': optimizer_b.state_dict(),
+                    'scheduler': scheduler_b.state_dict(),
+                    'best_psnr': best_psnr,
+                    'best_psnr_epoch': best_psnr_epoch
+                }, epoch, opt.MODEL.SESSION, opt.TRAINING.SAVE_DIR)
                 if epochs_no_improve >= early_stopping_patience:
                     print(f"⏹️ Early stopping triggered at epoch {epoch}")
                     break
