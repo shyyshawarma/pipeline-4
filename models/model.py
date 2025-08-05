@@ -602,16 +602,16 @@ class UIR_PolyKernel(nn.Module):
         out_dec_level1 = self.decoder_level1(inp_dec_level1)
 
 
-        conv = self.start_conv(x)
-        Residual_block1 = self.Residual_block(conv)
-        Residual_block2 = self.Residual_block(Residual_block1)
-        Residual_block3 = self.Residual_block(Residual_block2)
-        Residual_block4 = self.Residual_block(Residual_block3)
-        Residual_block5 = self.Residual_block(Residual_block4)
-        Residual_block5 = conv + Residual_block5
-        result2 = self.final_conv_drb(Residual_block5)
+        # conv = self.start_conv(x)
+        # Residual_block1 = self.Residual_block(conv)
+        # Residual_block2 = self.Residual_block(Residual_block1)
+        # Residual_block3 = self.Residual_block(Residual_block2)
+        # Residual_block4 = self.Residual_block(Residual_block3)
+        # Residual_block5 = self.Residual_block(Residual_block4)
+        # Residual_block5 = conv + Residual_block5
+        # result2 = self.final_conv_drb(Residual_block5)
 
-        return self.norm(self.final_conv(out_dec_level1) + result2)
+        return self.norm(self.final_conv(out_dec_level1) + x)
 
 
 if __name__ == '__main__':
